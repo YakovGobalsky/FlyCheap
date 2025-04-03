@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -46,8 +47,15 @@ namespace FlyCheap.UI
 		{
 			if (button.IsChecked)
 			{
-				OnCountrySelected?.Invoke(button.Country);
+				Canvas.interactable = false;
+				StartCoroutine(WaitAndCastAction(button));
 			}
+		}
+
+		private IEnumerator WaitAndCastAction(CountriesButton button)
+		{
+			yield return new WaitForSecondsRealtime(1f);
+			OnCountrySelected?.Invoke(button.Country);
 		}
 	}
 }

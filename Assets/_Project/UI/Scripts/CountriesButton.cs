@@ -24,6 +24,7 @@ namespace FlyCheap
 			{
 				IsChecked = !IsChecked;
 				OnClicked?.Invoke(this);
+				Refresh();
 			});
 			Refresh();
 		}
