@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace FlyCheap.UI
 {
-  public class CountriesItemsListPresenter: MonoBehaviour
-  {
+  public class FrameCountriesList: FrameSceneObject
+	{
 		[SerializeField] private CountriesButton _btnPrefab;
 		[SerializeField] private Transform _itemsHolder;
 

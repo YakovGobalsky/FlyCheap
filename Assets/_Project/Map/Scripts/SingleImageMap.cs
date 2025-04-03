@@ -28,6 +28,25 @@ namespace FlyCheap
 			CalculateBounds();
 		}
 
+		public void CopyInfoFromMap(SingleImageMap otherMap, bool applyViewOffset = true)
+		{
+			ClearMarkers();
+			foreach (var marker in otherMap._markers)
+			{
+				AddMarker(marker.Position);
+			}
+
+			Vector2 offset = Vector2.zero;
+			if (applyViewOffset)
+			{
+				var wpos = otherMap.transform.TransformPoint(Vector3.zero);
+				offset = transform.transform.InverseTransformPoint(wpos);
+			}
+
+			_center = otherMap._center + offset;
+			UpdateViewPos();
+		}
+
 		public void CenterAt (Vector2 pos)
 		{
 			Vector2 lc;
@@ -58,6 +77,8 @@ namespace FlyCheap
 		protected override MarkerImage CreateMarkerImpl (Vector2 pos)
 		{
 			var marker = GameObject.Instantiate(_markerPrefab, _markersHolder);
+			marker.StorePosition(pos);
+
 			var anchor = CalcMarkerPosition(pos);
 			var rct = marker.transform as RectTransform;
 			rct.anchorMin = anchor;
@@ -68,23 +89,6 @@ namespace FlyCheap
 
 		private void CalculateBounds()
 		{
-			//var worldBounds = new Vector3[4] { Vector3.zero, Vector3.zero, Vector3.zero, Vector3.zero };
-			//var localBounds = new Vector3[4] { Vector3.zero, Vector3.zero, Vector3.zero, Vector3.zero };
-			//_boundsHolder.GetWorldCorners(worldBounds);
-
-			//for (int i=0; i<4; i++)
-			//{
-			//	localBounds[i] = transform.InverseTransformPoint(worldBounds[i]);
-			//}
-
-			//Vector2 offset = new Vector2(localBounds[1].x - localBounds[0].x, localBounds[0].y - localBounds[1].y);
-
-			//_boundsMin = localBounds[1]; //left top
-			//_boundsMax = localBounds[3]; //right bottom
-
-			//_boundsMin += offset;
-			//_boundsMax -= offset;
-
 			var rctTransform = transform as RectTransform;
 
 			var offset = new Vector2(rctTransform.rect.size.x, rctTransform.rect.size.y) / 2f;

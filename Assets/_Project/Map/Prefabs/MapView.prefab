@@ -54,6 +54,9 @@ MonoBehaviour:
   _map: {fileID: 6907220654107125171}
   _markerPrefab: {fileID: 6025708161088227040, guid: 7863b6d2177a00947acbcc5d16a37b13, type: 3}
   _markersHolder: {fileID: 6907220654107125171}
+  _center: {x: 0, y: 0}
+  _boundsMin: {x: 0, y: 0}
+  _boundsMax: {x: 0, y: 0}
 --- !u!1 &9017292748437419865
 GameObject:
   m_ObjectHideFlags: 0

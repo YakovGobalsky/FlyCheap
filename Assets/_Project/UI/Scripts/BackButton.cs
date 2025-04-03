@@ -3,10 +3,12 @@ using UnityEngine.UI;
 
 namespace FlyCheap
 {
-  [RequireComponent(typeof(Button))]
-  public class BackButton: MonoBehaviour
-  {
-    private Button _button = null;
+	[RequireComponent(typeof(Button))]
+	public class BackButton: MonoBehaviour
+	{
+		[SerializeField] private CanvasGroup _canvasGroup; //not for production/repalce to normal transaction screens
+
+		private Button _button = null;
 
 		private void Awake ()
 		{
@@ -17,7 +19,10 @@ namespace FlyCheap
 		{
 			if (Input.GetKeyDown(KeyCode.Escape))
 			{
-				_button?.onClick?.Invoke();
+				if (_canvasGroup ? _canvasGroup.interactable : false)
+				{
+					_button?.onClick?.Invoke();
+				}
 			}
 		}
 	}

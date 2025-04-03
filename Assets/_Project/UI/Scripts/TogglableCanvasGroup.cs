@@ -1,8 +1,6 @@
 using UnityEngine;
 
 using DG.Tweening;
-using System;
-using TMPro;
 
 namespace FlyCheap.UI
 {
@@ -12,7 +10,6 @@ namespace FlyCheap.UI
 		[SerializeField] private bool _defaultState = false;
 
 		private Sequence _sequence = null;
-		private Tween _animation = null;
 
 		private CanvasGroup _canvasGroup;
 
