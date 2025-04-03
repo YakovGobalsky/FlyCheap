@@ -18,17 +18,21 @@ namespace FlyCheap
 
 			_frameCountriesList.OnCountrySelected += CloseListOpenDetails;
 			_frameCountryDetails.OnClickedOpen += OpenWorldMap;
-			_frameWorldMap.OnClosed += () => SwitchFrames(_frameWorldMap, _frameCountryDetails);
+			_frameWorldMap.OnClosed += () =>
+			{
+				SwitchFrames(_frameWorldMap, _frameCountryDetails, true);
+				_frameCountryDetails.BackToDetails();
+			};
 			_frameCountryDetails.OnClosed += () => SwitchFrames(_frameCountryDetails, _frameCountriesList);
 
 			_frameCountriesList.gameObject.SetActive(true);
 			_frameCountryDetails.gameObject.SetActive(false);
 		}
 
-		private void SwitchFrames (FrameSceneObject from, FrameSceneObject to)
+		private void SwitchFrames (FrameSceneObject from, FrameSceneObject to, bool istantAction=true)
 		{
-			from.HideFrame();
-			to.ShowFrame();
+			from.HideFrame(istantAction);
+			to.ShowFrame(istantAction);
 		}
 
 		private void CloseListOpenDetails (Country country)
@@ -39,7 +43,7 @@ namespace FlyCheap
 
 		private void OpenWorldMap (SingleImageMap map)
 		{
-			SwitchFrames(_frameCountryDetails, _frameWorldMap);
+			SwitchFrames(_frameCountryDetails, _frameWorldMap, true);
 			_frameWorldMap.GetMapView().CopyInfoFromMap(map);
 		}
 	}

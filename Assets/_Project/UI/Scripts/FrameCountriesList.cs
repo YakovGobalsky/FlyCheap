@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace FlyCheap.UI
 {
@@ -8,6 +9,7 @@ namespace FlyCheap.UI
 	{
 		[SerializeField] private CountriesButton _btnPrefab;
 		[SerializeField] private Transform _itemsHolder;
+		[SerializeField] private TogglableCanvasGroup _itemsListGroup;
 
 		private CountriesList _countriesList;
 
@@ -24,6 +26,8 @@ namespace FlyCheap.UI
 		{
 			RefreshList();
 		}
+
+		public void ToggleGroup () => _itemsListGroup.Toggle();
 
 		private void RefreshList ()
 		{
@@ -54,6 +58,7 @@ namespace FlyCheap.UI
 
 		private IEnumerator WaitAndCastAction(CountriesButton button)
 		{
+			ToggleGroup();
 			yield return new WaitForSecondsRealtime(1f);
 			OnCountrySelected?.Invoke(button.Country);
 		}

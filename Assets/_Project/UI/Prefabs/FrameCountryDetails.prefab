@@ -171,7 +171,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 18}
-  m_SizeDelta: {x: -84, y: -256}
+  m_SizeDelta: {x: -84.00001, y: -256}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2318617569278373964
 CanvasRenderer:
@@ -520,8 +520,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5538950596625790700}
   - {fileID: 8047805534096743472}
+  - {fileID: 5538950596625790700}
   m_Father: {fileID: 2779943644384837097}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -673,6 +673,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canvasGroup: {fileID: 4349674175558648074}
   _mapView: {fileID: 910606142233817548}
+  _previewHolder: {fileID: 8698244469860666232}
+  _button: {fileID: 4339362021821908789}
 --- !u!225 &4349674175558648074
 CanvasGroup:
   m_ObjectHideFlags: 0

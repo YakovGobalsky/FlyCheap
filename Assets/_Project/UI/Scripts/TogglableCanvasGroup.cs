@@ -4,30 +4,15 @@ using DG.Tweening;
 
 namespace FlyCheap.UI
 {
-	[RequireComponent(typeof(CanvasGroup))]
 	public class TogglableCanvasGroup: MonoBehaviour
 	{
-		[SerializeField] private bool _defaultState = false;
+		[SerializeField] private CanvasGroup _canvasGroup;
 
 		private Sequence _sequence = null;
-
-		private CanvasGroup _canvasGroup;
 
 		private bool _isVisible = false;
 
 		private float GetAlpha (bool targetState) => targetState ? 1 : 0;
-		private Vector3 GetScale (bool targetState) => targetState ? Vector3.one : Vector3.one / 10f;
-
-		private void Awake ()
-		{
-			_canvasGroup = GetComponent<CanvasGroup>();
-			_isVisible = _defaultState;
-		}
-
-		private void OnEnable ()
-		{
-			InstantUpdateState();
-		}
 
 		private void OnDisable ()
 		{
@@ -36,13 +21,35 @@ namespace FlyCheap.UI
 
 		public void Toggle ()
 		{
+			_canvasGroup.gameObject.SetActive(true);
+
 			TryStopAnimation();
 			//InstantUpdateState();
 			_isVisible = !_isVisible;
 
+			_canvasGroup.interactable = false;
+			_canvasGroup.alpha = GetAlpha(!_isVisible);
+
 			_sequence = DOTween.Sequence();
-			_sequence.Append(_canvasGroup.DOFade(GetAlpha(_isVisible), 1f));
-			_sequence.Join(_canvasGroup.transform.DOScale(GetScale(_isVisible), 1f));
+			_sequence.Append(_canvasGroup.DOFade(GetAlpha(_isVisible), 0.2f));
+			//_sequence.Join(_canvasGroup.transform.DOScale(GetScale(_isVisible), 1f));
+
+			if (_isVisible)
+			{
+				_sequence.OnComplete(() =>
+				{
+					_canvasGroup.interactable = true;
+				});
+			}
+			else
+			{
+				_sequence.OnComplete(() =>
+				{
+					_canvasGroup.interactable = false;
+					_canvasGroup.gameObject.SetActive(false);
+				});
+			}
+
 			_sequence.Play();
 		}
 
@@ -50,12 +57,6 @@ namespace FlyCheap.UI
 		{
 			_sequence?.Kill(true);
 			_sequence = null;
-		}
-
-		private void InstantUpdateState ()
-		{
-			_canvasGroup.alpha = GetAlpha(_isVisible);
-			transform.localScale = GetScale(_isVisible);
 		}
 	}
 }
