@@ -5,8 +5,8 @@ namespace FlyCheap.UI
 {
   public class CountriesItemsListPresenter: MonoBehaviour
   {
-		[SerializeField] private Transform _itemsHolder;
 		[SerializeField] private CountriesButton _btnPrefab;
+		[SerializeField] private Transform _itemsHolder;
 
 		private CountriesList _countriesList;
 
