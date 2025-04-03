@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Title>k__BackingField: UnitedStates
   <Icon>k__BackingField: {fileID: 21300000, guid: 5d0d11c13c438cd4bb925b6f03c7d15e, type: 3}
-  <X>k__BackingField: 400
-  <Y>k__BackingField: 400
+  <X>k__BackingField: 390.6119
+  <Y>k__BackingField: 420.6993
+  EditorOnlyImage: {fileID: 21300000, guid: 59747f0d288399e4492eea07c04537eb, type: 3}

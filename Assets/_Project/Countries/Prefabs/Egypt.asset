@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Title>k__BackingField: Egypt
   <Icon>k__BackingField: {fileID: 21300000, guid: f2a2e99fefbbc7c46823d6e8aeaa05fa, type: 3}
-  <X>k__BackingField: 1110
-  <Y>k__BackingField: 485
+  <X>k__BackingField: 1114.8716
+  <Y>k__BackingField: 477.98602
+  EditorOnlyImage: {fileID: 21300000, guid: 59747f0d288399e4492eea07c04537eb, type: 3}

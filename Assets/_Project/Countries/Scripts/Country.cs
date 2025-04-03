@@ -1,6 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
+
+#if UNITY_EDITOR
 using UnityEngine;
+#endif
 
 namespace FlyCheap
 {
@@ -13,5 +17,15 @@ namespace FlyCheap
 		[field: SerializeField] public float X { get; private set; }
 		[field: SerializeField] public float Y { get; private set; }
 
+#if UNITY_EDITOR
+		public Sprite EditorOnlyImage;
+
+		public void SetXY(float x, float y)
+		{
+			X = x;
+			Y = y;
+			EditorUtility.SetDirty(this);
+		}
+#endif
 	}
 }
